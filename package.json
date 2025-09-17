@@ -1,0 +1,25 @@
+{
+  "name": "express-blog-intro",
+  "version": "1.0.0",
+  "description": "Creiamo il nostro blog personale e giorno dopo giorno lo potremo arricchire con nuove funzionalità sulla base di quello che impareremo.",
+  "homepage": "https://github.com/Steopa2001/express-blog-intro#readme",
+  "bugs": {
+    "url": "https://github.com/Steopa2001/express-blog-intro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Steopa2001/express-blog-intro.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "watch": "node --watch app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
