@@ -23,17 +23,29 @@ function store(req, res) {
 
 // Funzione per ottenere un singolo post tramite ID
 const getPostById = (req, res) => {
-  const id = parseInt(req.params.id); // Leggo l'ID dalla URL
-  const post = posts.find((post) => post.id === id); // Cerco il post con quell'ID
+  const id = parseInt(req.params.id);
 
-  // Se il post non esiste, ritorno errore 404
-  if (!post) {
-    return res.status(404).json({ message: "Post non trovato" });
+  if (isNaN(id)) {
+    return res.status(400).json({ error: "ID non valido" });
   }
 
-  // Se il post esiste, lo ritorno come risposta
-  res.json(post);
+  const sql = "SELECT * FROM posts WHERE id = ?";
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Errore durante l'esecuzione della query: " + err });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Post non trovato" });
+    }
+
+    res.json(results[0]);
+  });
 };
+
 
 // Funzione per creare un nuovo post
 const createPost = (req, res) => {
